@@ -1,9 +1,20 @@
 {
-  "target_group": [
-            {"url" : "https://google.com", "lagsim" : 1},
-            {"url" : "https://facebook.com", "lagsim" : 2},
-            {"url" : "https://reddit.com", "lagsim" : 5},
-            {"url" : "https://twitter.com", "lagsim" : 10}
+  "target_groups": [
+          
+          [
+            {"url" : "https://google.com", "lagsim" : 1, "metadata": "group1"},
+            {"url" : "https://facebook.com", "lagsim" : 2, "metadata": "group1"},
+            {"url" : "https://reddit.com", "lagsim" : 5, "metadata": "group1"},
+            {"url" : "https://twitter.com", "lagsim" : 10, "metadata": "group1"}
+          ],
+
+          [
+            {"url" : "https://ebay.com", "lagsim" : 10, "metadata": "group2"},
+            {"url" : "https://intellify.com.au", "lagsim" : 5, "metadata": "group2"},
+            {"url" : "https://amazon.com", "lagsim" : 8, "metadata": "group2"}
+            
+          ]
+
             ]
   
 }
