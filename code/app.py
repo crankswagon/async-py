@@ -1,14 +1,12 @@
-import json
-import aiohttp
+import httpx
 import asyncio
 import time
-import traceback
 
-async def hit_api(session, tar):
-    async with session.get(tar['url']) as response:        
-        await response.text()
-        await asyncio.sleep(tar['lagsim']) #simulate some data processing lag here
-        return f"{tar['url']} responded at {response.headers.get('Date')}.... data processing finished at {time.strftime('%X')}"
+async def hit_api(client, tar):
+    resp = await client.get(tar['url'])
+    await asyncio.sleep(tar['lagsim']) #simulate some data processing lag here
+    return f"{tar['url']} responded at {resp.headers.get('Date')}.... data processing finished at {time.strftime('%X')}"
+
 
 async def main(_targets):
     """
@@ -19,8 +17,8 @@ async def main(_targets):
     """
     print(f"started at {time.strftime('%X')}")
     
-    async with aiohttp.ClientSession() as session:
-        responses = await asyncio.gather(*[hit_api(session, x) for x in _targets]
+    async with httpx.AsyncClient() as client:
+        responses = await asyncio.gather(*[hit_api(client, x) for x in _targets]
                                          ,return_exceptions=True
                                          )
 
